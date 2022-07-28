@@ -1,10 +1,12 @@
 package com.example.blogappapis.payloads;
 
 
+import com.example.blogappapis.entity.Comment;
 import com.example.blogappapis.entity.Post;
 import lombok.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -17,15 +19,12 @@ public class PostDto {
     private String content;
     private String imageName;
 
-//    public PostDto(String title) {
-//        this.title = title;
-//    }
-
     private Date addedDate;
 
     private CategoryDto category;
 
     private UserDto user;
+    private List<CommentDto> comments;
 
     public PostDto(Post post){
         this.category=CategoryDto.builder().categoryId(post.getCategory().getCategoryId())
