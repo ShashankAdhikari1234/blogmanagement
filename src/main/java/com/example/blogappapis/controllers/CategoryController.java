@@ -3,13 +3,14 @@ package com.example.blogappapis.controllers;
 import com.example.blogappapis.payloads.ApiResponse;
 import com.example.blogappapis.payloads.CategoryDto;
 import com.example.blogappapis.services.CategoryService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-
+@SecurityRequirement(name = "Authorization")
 @RestController
 @RequestMapping("/api/categories")
 public class CategoryController {

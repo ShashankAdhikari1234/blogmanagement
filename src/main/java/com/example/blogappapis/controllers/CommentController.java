@@ -4,10 +4,11 @@ package com.example.blogappapis.controllers;
 import com.example.blogappapis.payloads.ApiResponse;
 import com.example.blogappapis.payloads.CommentDto;
 import com.example.blogappapis.services.CommentService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+@SecurityRequirement(name = "Authorization")
 @RestController
 @RequestMapping("/api/comments")
 public class CommentController {

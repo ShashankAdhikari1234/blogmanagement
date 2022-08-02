@@ -7,6 +7,7 @@ import com.example.blogappapis.security.JwtAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -17,11 +18,21 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
 @EnableWebSecurity
+@EnableWebMvc
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+    public static final String[] PUBLIC_URLS={
+            "/api/v1/auth/**",
+
+
+
+
+
+    };
     @Autowired
  private CustomUserDetailService customUserDetailService;
     @Autowired
@@ -34,8 +45,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                csrf()
                .disable()
                .authorizeHttpRequests()
-               .antMatchers("/api/v1/auth/login")
-               .permitAll()
+               .antMatchers( "/swagger-ui/**","/swagger-resources/**", "/v3/api-docs/**", "/webjars/**").permitAll()
+               .antMatchers(PUBLIC_URLS).permitAll()
+               .antMatchers(HttpMethod.GET).permitAll()
                .anyRequest()
                .authenticated()
                .and()

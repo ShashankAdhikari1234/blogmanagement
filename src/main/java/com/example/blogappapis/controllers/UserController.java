@@ -3,6 +3,7 @@ package com.example.blogappapis.controllers;
 import com.example.blogappapis.payloads.ApiResponse;
 import com.example.blogappapis.payloads.UserDto;
 import com.example.blogappapis.services.UserService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
-
+@SecurityRequirement(name = "Authorization")
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
