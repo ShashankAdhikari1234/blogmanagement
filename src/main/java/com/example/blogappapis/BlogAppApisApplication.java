@@ -1,5 +1,6 @@
 package com.example.blogappapis;
 
+import com.example.blogappapis.entity.User;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeIn;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
@@ -12,6 +13,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
 
 @SpringBootApplication
 @OpenAPIDefinition(
@@ -39,16 +41,20 @@ import org.springframework.security.crypto.password.PasswordEncoder;
         bearerFormat = "JWT",
         scheme = "bearer"
 )
-public class BlogAppApisApplication implements CommandLineRunner {
+public class BlogAppApisApplication  implements CommandLineRunner {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
     public static void main(String[] args) {
         SpringApplication.run(BlogAppApisApplication.class, args);
+
+
     }
+
 
     @Override
     public void run(String... args) throws Exception {
-        System.out.println(passwordEncoder.encode("1234"));
+        System.out.println(passwordEncoder.encode("xyz"));
     }
 }
+

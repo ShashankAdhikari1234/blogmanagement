@@ -29,6 +29,7 @@ public class User implements UserDetails {
     private String email;
     private String password;
     private String about;
+
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<Post> posts = new ArrayList<>();
     @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)

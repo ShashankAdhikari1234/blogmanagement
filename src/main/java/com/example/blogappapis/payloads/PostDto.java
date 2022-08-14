@@ -7,6 +7,7 @@ import lombok.*;
 
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -19,7 +20,7 @@ public class PostDto {
     private String content;
     private String imageName;
 
-    private Date addedDate;
+
 
     private CategoryDto category;
 
@@ -33,11 +34,12 @@ public class PostDto {
                 .categoryId(post.getCategory().getCategoryId())
                 .build();
         this.title= post.getTitle();
-        this.addedDate=post.getAddDate();
+
         this.content= post.getContent();
         this.imageName= post.getImageName();
         this.user=new UserDto(post.getUser());
         this.postId = post.getPostId();
+        this.comments=post.getComments().stream().map(comment -> new CommentDto(comment)).collect(Collectors.toList());
 
     }
 

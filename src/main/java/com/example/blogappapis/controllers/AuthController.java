@@ -3,17 +3,14 @@ package com.example.blogappapis.controllers;
 import com.example.blogappapis.payloads.JwtAuthRequest;
 import com.example.blogappapis.payloads.JwtAuthResponse;
 import com.example.blogappapis.security.JwtTokenHelper;
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,10 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/v1/auth")
-@SecurityRequirement(name = "Authorization")
 public class AuthController {
 @Autowired
-    private JwtTokenHelper jwtTokenHelper;
+private JwtTokenHelper jwtTokenHelper;
 @Autowired
 private UserDetailsService userDetailsService;
 @Autowired
@@ -48,7 +44,7 @@ private AuthenticationManager authenticationManager;
 try {
     this.authenticationManager.authenticate(authenticationToken);
 }catch(BadCredentialsException e){
-    System.out.println("invalid details" );
+    System.out.println("Invalid details" );
     throw new Exception("Invalid user name or password!!");
 
 }
